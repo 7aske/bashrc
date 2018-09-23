@@ -7,6 +7,7 @@ function speedtest (){
 }
 function bashrc (){
 	sudo nano ~/.bashrc && exec bash
+	#sh $HOME/Documents/CODE/sh/bashrc/update_bashrc.sh
 }
 function code () {
 	 cd $HOME/Documents/CODE/$1/$2;	
