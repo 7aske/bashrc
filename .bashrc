@@ -38,7 +38,7 @@ alias sha='cd $HOME/Share'
 alias doc='cd $HOME/Documents'
 alias dro='cd $HOME/Dropbox'
 alias pub='cd $HOME/Public'
-alias k='krusader'
+alias k='sudo krusader'
 
 
 alias dserver='cd $HOME/Documents/CODE/js/deployment-server && npm start'
