@@ -36,11 +36,11 @@ alias ls='ls --color=auto -gGapv'
 alias dow='cd $HOME/Downloads'
 alias sha='cd $HOME/Share'
 alias doc='cd $HOME/Documents'
+alias pic='cd $HOME/Pictures'
 alias dro='cd $HOME/Dropbox'
 alias pub='cd $HOME/Public'
 alias k='sudo krusader'
-
-
+alias e='explorer'
 alias dserver='cd $HOME/Documents/CODE/js/deployment-server && npm start'
 
 
@@ -59,3 +59,20 @@ LC_TELEPHONE="en_US.UTF-8"
 LC_MEASUREMENT="en_US.UTF-8"
 LC_IDENTIFICATION="en_US.UTF-8"
 LC_ALL="en_US.UTF-8"
+
+function python(){
+	unameOut="$(uname -s)"
+	case "${unameOut}" in
+		Linux*)     machine=Linux;;
+		Darwin*)    machine=Mac;;
+		CYGWIN*)    machine=Cygwin;;
+		MINGW*)     machine=MinGw;;
+		*)          machine="UNKNOWN:${unameOut}"
+	esac
+	echo ${machine}
+	if test ${machine} = 'MinGw'; then
+		winpty python.exe $1 $2 $3
+	fi
+}
+
+
