@@ -20,10 +20,10 @@ function gg () {
 	git push -u origin master
 }
 function prune (){
-	python3 $HOME/Documents/CODE/py/utils-py/prune.py $1
+	python $HOME/Documents/CODE/py/utils-py/prune.py $1
 }
 function backup (){
-	python3 $HOME/Documents/CODE/py/utils-py/backup.py $1 $2 $3
+	python $HOME/Documents/CODE/py/utils-py/backup.py $1 $2 $3
 }
 function gr (){
 	echo $1
@@ -71,7 +71,9 @@ function python(){
 	esac
 	echo ${machine}
 	if test ${machine} = 'MinGw'; then
-		winpty python.exe $1 $2 $3
+		winpty python.exe "$@"
+	else
+		python3 "$@"
 	fi
 }
 
