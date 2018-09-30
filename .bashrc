@@ -6,7 +6,7 @@ function speedtest (){
 	curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
 }
 function bashrc (){
-	sudo nano ~/.bashrc && exec bash
+	nano ~/.bashrc && exec bash
 	#sh $HOME/Documents/CODE/sh/bashrc/update_bashrc.sh
 }
 function code () {
@@ -31,7 +31,7 @@ function gr (){
 	git init
 	git remote add origin https://github.com/7aske/$1.git
 }
-export -f code
+alias c='code-insiders'
 alias ls='ls --color=auto -gGapv'
 alias dow='cd $HOME/Downloads'
 alias sha='cd $HOME/Share'
