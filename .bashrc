@@ -20,10 +20,10 @@ function gg () {
 	git push -u origin master
 }
 function prune (){
-	python $HOME/Documents/CODE/py/utils-py/prune.py $1
+	python $HOME/Documents/CODE/py/utils-py/prune.py "$@"
 }
 function backup (){
-	python $HOME/Documents/CODE/py/utils-py/backup.py $1 $2 $3
+	python $HOME/Documents/CODE/py/utils-py/backup.py "$@"
 }
 function gr (){
 	echo $1
