@@ -1,6 +1,6 @@
 #!/bin/bash
-DIR="$HOME/Documents/CODE"
-brc="source $HOME/Documents/CODE/sh/bashrc/.bashrc"
+DIR="$HOME/Documents/7aske/CODE"
+brc="source $HOME/Documents/7aske/CODE/sh/bashrc/met/.bashrc"
 
 function init() {
     if grep "$brc" "$HOME/.bashrc"
@@ -19,3 +19,8 @@ else
     mkdir -p "$DIR/sh"&& git clone https://github.com./7aske/bashrc "$DIR/sh/bashrc"
     init
 fi
+
+
+
+
+
