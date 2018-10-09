@@ -11,4 +11,4 @@ function c () {
 alias e='explorer'
 alias doc='cd $HOME/Documents'
 alias dow='cd $HOME/Downloads'
-alias ls='ls --color=auto -gGapv
+alias ls='ls --color=auto -gGapv'
