@@ -10,6 +10,9 @@ function code () {
 function c () {
     C:\\dev\\Microsoft\ VS\ Code\\bin\\code "$@"
 }
+function j () {
+    C:\\Program\ Files\\Java\\jdk1.8.0_172\\bin\\java.exe "$@"
+}
 alias e='explorer'
 alias doc='cd $HOME/Documents'
 alias dow='cd $HOME/Downloads'
