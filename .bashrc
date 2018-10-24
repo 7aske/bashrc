@@ -39,6 +39,7 @@ alias pic='cd $HOME/Pictures'
 alias dro='cd $HOME/Dropbox'
 alias pub='cd $HOME/Public'
 alias e='explorer'
+alias wol='wakemeonlan'
 alias dserver='cd $HOME/Documents/CODE/js/deployment-server && npm start'
 
 
