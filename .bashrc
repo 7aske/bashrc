@@ -9,7 +9,7 @@ function bashrc (){
 	nano ~/.bashrc && exec bash
 }
 function code () {
-	 cd $HOME/Documents/CODE/$1/$2;	
+	cd $HOME/Documents/CODE/$1/$2;
 }
 function gp () {
 	git pull $1
