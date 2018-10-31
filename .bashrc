@@ -30,6 +30,9 @@ function gr (){
 	git init
 	git remote add origin https://github.com/7aske/$1.git
 }
+function clone (){
+	git clone https://github.com/7aske/$1
+}
 alias c='code-insiders'
 alias ls='ls --color=auto -gGapv'
 alias dow='cd $HOME/Downloads'
