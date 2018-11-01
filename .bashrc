@@ -20,7 +20,7 @@ compl () {
         local words=("${COMP_WORDS[@]}");
         unset words[0];
         unset words[$COMP_CWORD];
-        local completions=$(dir $HOME/Documents/CODE/"${words[@]}");
+        local completions=$(dir -F $HOME/Documents/CODE/"${words[@]}");
         COMPREPLY=($(compgen -W "$completions" -- "$word"));
     fi
 }
