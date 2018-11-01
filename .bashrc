@@ -11,6 +11,20 @@ function bashrc (){
 function code () {
 	cd $HOME/Documents/CODE/$1/$2;
 }
+compl () {
+    COMPREPLY=();
+    local word="${COMP_WORDS[COMP_CWORD]}";
+    if [ "$COMP_CWORD" -eq 1 ]; then
+        COMPREPLY=($(compgen -W "$(dir $HOME/Documents/CODE)" -- "$word"));
+    else
+        local words=("${COMP_WORDS[@]}");
+        unset words[0];
+        unset words[$COMP_CWORD];
+        local completions=$(dir $HOME/Documents/CODE/"${words[@]}");
+        COMPREPLY=($(compgen -W "$completions" -- "$word"));
+    fi
+}
+complete -F compl code
 function gp () {
 	git pull $1
 }
