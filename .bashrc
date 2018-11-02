@@ -48,7 +48,7 @@ function clone (){
 	git clone https://github.com/7aske/$1
 }
 alias c='code-insiders'
-alias py='pycharm64'
+alias p='pycharm64'
 alias ls='ls --color=auto -gGapv'
 alias dow='cd $HOME/Downloads'
 alias sha='cd $HOME/Share'
