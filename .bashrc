@@ -6,7 +6,7 @@ function speedtest (){
 	curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
 }
 function bashrc (){
-	nano ~/.bashrc && exec bash
+	nano $HOME/Documents/CODE/sh/bashrc/.bashrc && nano ~/.bashrc && exec bash
 }
 function code () {
 	cd $HOME/Documents/CODE/$1/$2;
@@ -29,14 +29,16 @@ function gp () {
 	git pull $1
 }
 function gg () {
-	git add . && git commit -m "$@"
-	git push -u origin master
+	git add . && git commit -m "$@" & git push -u origin master
 }
 function prune (){
 	python $HOME/Documents/CODE/py/utils-py/prune.py "$@"
 }
 function backup (){
 	python $HOME/Documents/CODE/py/utils-py/backup.py "$@"
+}
+function gitstatus (){
+	python $HOME/Documents/CODE/py/utils-py/gitstatus.py "$@"
 }
 function gr (){
 	echo $1
