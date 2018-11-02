@@ -29,7 +29,8 @@ function gp () {
 	git pull $1
 }
 function gg () {
-	git add . && git commit -m "$@" & git push -u origin master
+	git add . && git commit -m "$@"
+	git push -u origin master
 }
 function prune (){
 	python $HOME/Documents/CODE/py/utils-py/prune.py "$@"
