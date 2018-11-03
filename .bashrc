@@ -41,6 +41,9 @@ function backup (){
 function gitstatus (){
 	python $HOME/Documents/CODE/py/utils-py/gitstatus.py "$@"
 }
+function gitfetch (){
+	python $HOME/Documents/CODE/py/utils-py/gitfetch.py "$@"
+}
 function gr (){
 	echo $1
 	curl -u '7aske' https://api.github.com/user/repos -d "{\"name\":\"$1\"}"
