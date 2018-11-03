@@ -32,8 +32,8 @@ function gg () {
 	git add . && git commit -m "$@"
 	git push -u origin master
 }
-function prune (){
-	python $HOME/Documents/CODE/py/utils-py/prune.py "$@"
+function clean (){
+	python $HOME/Documents/CODE/py/utils-py/clean.py "$@"
 }
 function backup (){
 	python $HOME/Documents/CODE/py/utils-py/backup.py "$@"
