@@ -32,16 +32,10 @@ function gg () {
 	git add . && git commit -m "$@"
 	git push -u origin master
 }
-function clean (){
-	python $HOME/Documents/CODE/py/utils-py/clean.py "$@"
-}
-function backup (){
-	python $HOME/Documents/CODE/py/utils-py/backup.py "$@"
-}
-function gitstatus (){
+function gs (){
 	python $HOME/Documents/CODE/py/utils-py/gitstatus.py "$@"
 }
-function gitfetch (){
+function gf (){
 	python $HOME/Documents/CODE/py/utils-py/gitfetch.py "$@"
 }
 function gr (){
@@ -50,11 +44,20 @@ function gr (){
 	git init
 	git remote add origin https://github.com/7aske/$1.git
 }
+function clean (){
+	python $HOME/Documents/CODE/py/utils-py/clean.py "$@"
+}
+function backup (){
+	python $HOME/Documents/CODE/py/utils-py/backup.py "$@"
+}
 function clone (){
 	git clone https://github.com/7aske/$1
 }
+function p () {
+	pycharm64 "$@"&
+}
 alias c='code-insiders'
-alias p='pycharm64'
+#alias p='pycharm64'
 alias ls='ls --color=auto -gGapv'
 alias dow='cd $HOME/Downloads'
 alias sha='cd $HOME/Share'
