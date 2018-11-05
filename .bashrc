@@ -25,11 +25,13 @@ compl () {
     fi
 }
 complete -F compl code
+complete -F compl gg
+complete -F compl gs
 function gp () {
 	git pull $1
 }
 function gg () {
-	if [$@ -eq 0]
+	if [ $# -eq 1 ]
 	then
 		git add . && git commit -m "$@"
 		git push -u origin master
