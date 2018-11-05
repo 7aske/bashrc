@@ -29,8 +29,15 @@ function gp () {
 	git pull $1
 }
 function gg () {
-	git add . && git commit -m "$@"
-	git push -u origin master
+	if [$@ -eq 0]
+	then
+		git add . && git commit -m "$@"
+		git push -u origin master
+	else
+		loc="$HOME/Documents/CODE/$1/$2"
+		git -C $loc add . && git -C $loc commit -m "$3"
+		git -C $loc push -u origin master
+	fi
 }
 function gs (){
 	python $HOME/Documents/CODE/py/utils-py/gitstatus.py "$@"
@@ -53,11 +60,8 @@ function backup (){
 function clone (){
 	git clone https://github.com/7aske/$1
 }
-function p () {
-	pycharm64 "$@"&
-}
 alias c='code-insiders'
-#alias p='pycharm64'
+alias p='pycharm64'
 alias ls='ls --color=auto -gGapv'
 alias dow='cd $HOME/Downloads'
 alias sha='cd $HOME/Share'
