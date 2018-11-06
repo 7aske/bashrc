@@ -48,8 +48,10 @@ function gf (){
 	python $HOME/Documents/CODE/py/utils-py/gitfetch.py "$@"
 }
 function gr (){
-	echo $1
-	curl -u '7aske' https://api.github.com/user/repos -d "{\"name\":\"$1\"}"
+	echo "Password:"
+	read -s password
+	echo
+	curl -u 7aske:$password https://api.github.com/user/repos -d "{\"name\":\"$1\"}"
 	git init
 	git remote add origin https://github.com/7aske/$1.git
 }
