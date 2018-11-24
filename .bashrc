@@ -64,6 +64,9 @@ function backup (){
 function clone (){
 	git clone https://github.com/7aske/$1
 }
+function commit (){
+	git add .&& git commit -m "$@"
+}
 alias c='code-insiders'
 alias p='pycharm64'
 alias ls='ls --color=auto -gGapvh --group-directories-first'
