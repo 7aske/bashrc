@@ -34,11 +34,11 @@ function gg () {
 	if [ $# -eq 1 ]
 	then
 		git add . && git commit -m "$@"
-		git push -u origin master
+		git push
 	else
 		loc="$HOME/Documents/CODE/$1/$2"
 		git -C $loc add . && git -C $loc commit -m "$3"
-		git -C $loc push -u origin master
+		git -C $loc push
 	fi
 }
 function gs (){
