@@ -67,6 +67,9 @@ function clone (){
 function commit (){
 	git add .&& git commit -m "$@"
 }
+function push (){
+	git push "$@"
+}
 alias c='code-insiders'
 alias p='pycharm64'
 alias ls='ls --color=auto -gGapvh --group-directories-first'
