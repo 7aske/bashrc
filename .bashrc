@@ -9,7 +9,7 @@ function bashrc (){
 	nano $HOME/Documents/CODE/sh/bashrc/.bashrc && nano ~/.bashrc && exec bash
 }
 function code () {
-	cd $HOME/Documents/CODE/$1/$2;
+	builtin cd $HOME/Documents/CODE/$1/$2 && ls
 }
 compl () {
     COMPREPLY=();
@@ -70,18 +70,32 @@ function commit (){
 function push (){
 	git push "$@"
 }
+function cd (){
+	echo $1
+	case $1 in
+		..)
+			builtin cd ..;;
+		...)	
+			builtin cd ../..;;
+		....)
+			builtin cd ../../..;;
+		*)
+			builtin cd $1;;
+	esac
+	ls
+}
+#alias cd='cd_func'
 alias c='code-insiders'
-alias p='pycharm64'
 alias ls='ls --color=auto -gGapvh --group-directories-first'
-alias dow='cd $HOME/Downloads'
-alias sha='cd $HOME/Share'
-alias doc='cd $HOME/Documents'
-alias pic='cd $HOME/Pictures'
-alias dro='cd $HOME/Dropbox'
-alias pub='cd $HOME/Public'
-alias shr='cd /usr/share'
+alias dow='builtin cd $HOME/Downloads'
+alias sha='builtin cd $HOME/Share'
+alias doc='builtin cd $HOME/Documents'
+alias pic='builtin cd $HOME/Pictures'
+alias dro='builtin cd $HOME/Dropbox'
+alias pub='builtin cd $HOME/Public'
+alias shr='builtin cd /usr/share'
 alias wol='wakemeonlan'
-alias dserver='cd $HOME/Documents/CODE/js/deployment-server && npm start'
+alias dserver='builtin cd $HOME/Documents/CODE/js/deployment-server && npm start'
 function e () {
 	unameOut="$(uname -s)"
 	case "${unameOut}" in
