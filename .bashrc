@@ -79,10 +79,24 @@ alias doc='cd $HOME/Documents'
 alias pic='cd $HOME/Pictures'
 alias dro='cd $HOME/Dropbox'
 alias pub='cd $HOME/Public'
-alias e='explorer'
+alias shr='cd /usr/share'
 alias wol='wakemeonlan'
 alias dserver='cd $HOME/Documents/CODE/js/deployment-server && npm start'
-
+function e () {
+	unameOut="$(uname -s)"
+	case "${unameOut}" in
+		Linux*)     machine=Linux;;
+		Darwin*)    machine=Mac;;
+		CYGWIN*)    machine=Cygwin;;
+		MINGW*)     machine=MinGw;;
+		*)          machine="UNKNOWN:${unameOut}"
+	esac
+	if test ${machine} = 'Linux'; then
+		nautilus "$@"&
+	else
+		explorer "$@"&
+	fi
+}
 
 LANG="en_US.UTF-8"
 LANGUAGE=
