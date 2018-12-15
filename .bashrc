@@ -84,16 +84,16 @@ function cd (){
 	esac
 	ls
 }
-#alias cd='cd_func'
+alias autoremove="sudo apt autoremove"
 alias c='code-insiders'
 alias ls='ls --color=auto -gGapvh --group-directories-first'
-alias dow='builtin cd $HOME/Downloads'
-alias sha='builtin cd $HOME/Share'
-alias doc='builtin cd $HOME/Documents'
-alias pic='builtin cd $HOME/Pictures'
-alias dro='builtin cd $HOME/Dropbox'
-alias pub='builtin cd $HOME/Public'
-alias shr='builtin cd /usr/share'
+alias dow='builtin cd $HOME/Downloads&& ls'
+alias sha='builtin cd $HOME/Share&& ls'
+alias doc='builtin cd $HOME/Documents&& ls'
+alias pic='builtin cd $HOME/Pictures&& ls'
+alias dro='builtin cd $HOME/Dropbox&& ls'
+alias pub='builtin cd $HOME/Public&& ls'
+alias shr='builtin cd /usr/share&& ls'
 alias wol='wakemeonlan'
 alias dserver='builtin cd $HOME/Documents/CODE/js/deployment-server && npm start'
 function e () {
