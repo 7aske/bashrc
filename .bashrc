@@ -1,6 +1,7 @@
 #
 # ~/.bashrc
 #
+alias ls='ls --color=auto -gGapvh --group-directories-first'
 
 function speedtest (){
 	curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
@@ -71,22 +72,19 @@ function push (){
 	git push "$@"
 }
 function cd (){
-	echo $1
 	case $1 in
 		..)
-			builtin cd ..;;
+			builtin cd ..&& ls;;
 		...)	
-			builtin cd ../..;;
+			builtin cd ../..&& ls;;
 		....)
-			builtin cd ../../..;;
+			builtin cd ../../..&& ls;;
 		*)
-			builtin cd $1;;
+			builtin cd $1&& ls;;
 	esac
-	ls
 }
 alias autoremove="sudo apt autoremove"
 alias c='code-insiders'
-alias ls='ls --color=auto -gGapvh --group-directories-first'
 alias dow='builtin cd $HOME/Downloads&& ls'
 alias sha='builtin cd $HOME/Share&& ls'
 alias doc='builtin cd $HOME/Documents&& ls'
