@@ -68,6 +68,9 @@ function clone (){
 function commit (){
 	git add .&& git commit -m "$@"
 }
+function drycommit (){
+	git commit --branch --dry-run
+}
 function push (){
 	git push "$@"
 }
