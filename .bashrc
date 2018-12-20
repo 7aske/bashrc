@@ -147,3 +147,15 @@ function python(){
 }
 
 
+function battery(){
+	echo $1
+	if [ "$1" = "true" ]; then
+		echo Battery
+		sudo tlp true
+		sudo pm-powersave true
+	else	
+		echo AC
+		sudo tlp false
+		sudo pm-powersave false
+	fi
+}
