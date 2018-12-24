@@ -87,8 +87,7 @@ function cd (){
 	esac
 }
 function aur (){
-	git clone https://aur.archlinux.org/$1.git ~/Downloads/$1&& 
-cd ~/Downloads/$1&& makepkg -sirc
+	git clone https://aur.archlinux.org/$1.git
 }
 #alias autoremove='sudo apt autoremove'
 alias pacman='sudo pacman'
