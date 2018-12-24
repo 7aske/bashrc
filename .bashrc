@@ -86,7 +86,12 @@ function cd (){
 			builtin cd $1&& ls;;
 	esac
 }
-alias autoremove="sudo apt autoremove"
+function aur (){
+	git clone htpps://aur.archlinux.org/$1.git
+}
+#alias autoremove='sudo apt autoremove'
+alias pacman='sudo pacman'
+
 alias c='code-insiders'
 alias dow='builtin cd $HOME/Downloads&& ls'
 alias sha='builtin cd $HOME/Share&& ls'
