@@ -92,8 +92,8 @@ cd ~/Downloads/$1&& makepkg -sirc
 }
 #alias autoremove='sudo apt autoremove'
 alias pacman='sudo pacman'
-
-alias c='code-insiders'
+alias packer='sudo packer'
+alias ci='code-insiders'
 alias dow='builtin cd $HOME/Downloads&& ls'
 alias sha='builtin cd $HOME/Share&& ls'
 alias doc='builtin cd $HOME/Documents&& ls'
