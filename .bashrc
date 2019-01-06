@@ -59,6 +59,9 @@ function gr (){
 function clean (){
 	python $HOME/Documents/CODE/py/utils-py/clean.py "$@"
 }
+function renamer (){
+	python $HOME/Documents/CODE/py/utils-py/renamer.py "$@"
+}
 function backup (){
 	python $HOME/Documents/CODE/py/utils-py/backup.py "$@"
 }
