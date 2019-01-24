@@ -104,6 +104,7 @@ alias pic='builtin cd $HOME/Pictures&& ls'
 alias dro='builtin cd $HOME/Dropbox&& ls'
 alias pub='builtin cd $HOME/Public&& ls'
 alias shr='builtin cd /usr/share&& ls'
+alias drc='builtin cd ~/.wine/drive_c&& ls'
 alias wol='wakemeonlan'
 alias dserver='builtin cd $HOME/Documents/CODE/js/deployment-server && npm start'
 function e () {
