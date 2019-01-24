@@ -62,6 +62,9 @@ function clean (){
 function renamer (){
 	python $HOME/Documents/CODE/py/utils-py/renamer.py "$@"
 }
+function instaupload(){
+	python $HOME/Documents/CODE/py/utils-py/instagramupload.py "$@"
+}
 function backup (){
 	python $HOME/Documents/CODE/py/utils-py/backup.py "$@"
 }
