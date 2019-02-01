@@ -12,6 +12,7 @@ function bashrc (){
 function code () {
 	builtin cd $HOME/Documents/CODE/$1/$2 && ls
 }
+export CODE=$HOME/Documents/CODE
 compl () {
     COMPREPLY=();
     local word="${COMP_WORDS[COMP_CWORD]}";
@@ -69,7 +70,12 @@ function backup (){
 	python $HOME/Documents/CODE/py/utils-py/backup.py "$@"
 }
 function clone (){
-	git clone https://github.com/7aske/$1
+	if [ "$#" -eq 2 ]
+	then
+		git clone https://github.com/$1/$1
+	else
+		git clone https://github.com/7aske/$2
+	fi
 }
 function commit (){
 	git add .&& git commit -m "$@"
@@ -80,6 +86,9 @@ function drycommit (){
 function push (){
 	git push "$@"
 }
+function pull (){
+	git pull "$@"
+}
 function cd (){
 	case $1 in
 		..)
@@ -88,6 +97,8 @@ function cd (){
 			builtin cd ../..&& ls;;
 		....)
 			builtin cd ../../..&& ls;;
+		.....)
+			builtin cd ../../../../&& ls;;
 		*)
 			builtin cd $1&& ls;;
 	esac
@@ -96,9 +107,7 @@ function aur (){
 	git clone https://aur.archlinux.org/$1.git ~/Downloads/$1&& 
 cd ~/Downloads/$1&& makepkg -sirc
 }
-#alias autoremove='sudo apt autoremove'
-alias pacman='sudo pacman'
-alias packer='sudo packer'
+alias autoremove='sudo pacman -R $(pacman -Qdtq)'
 alias ci='code-insiders'
 alias dow='builtin cd $HOME/Downloads&& ls'
 alias sha='builtin cd $HOME/Share&& ls'
@@ -108,8 +117,9 @@ alias dro='builtin cd $HOME/Dropbox&& ls'
 alias pub='builtin cd $HOME/Public&& ls'
 alias shr='builtin cd /usr/share&& ls'
 alias drc='builtin cd ~/.wine/drive_c&& ls'
-alias wol='wakemeonlan'
-alias dserver='builtin cd $HOME/Documents/CODE/js/deployment-server && npm start'
+alias etc='builtin cd /etc/&& ls'
+#alias dserver='builtin cd $HOME/Documents/CODE/js/deployment-server && npm start'
+alias backl='xbacklight -set'
 function e () {
 	unameOut="$(uname -s)"
 	case "${unameOut}" in
@@ -120,7 +130,7 @@ function e () {
 		*)          machine="UNKNOWN:${unameOut}"
 	esac
 	if test ${machine} = 'Linux'; then
-		nautilus "$@"&
+		nemo "$@"& disown -a
 	else
 		explorer "$@"&
 	fi
@@ -160,15 +170,15 @@ function python(){
 }
 
 
-function battery(){
-	echo $1
-	if [ "$1" = "true" ]; then
-		echo Battery
-		sudo tlp true
-		sudo pm-powersave true
-	else	
-		echo AC
-		sudo tlp false
-		sudo pm-powersave false
-	fi
-}
+#function battery(){
+#	echo $1
+#	if [ "$1" = "true" ]; then
+#		echo Battery
+#		sudo tlp true
+#		sudo pm-powersave true
+#	else	
+#		echo AC
+#		sudo tlp false
+#		sudo pm-powersave false
+#	fi
+#}
