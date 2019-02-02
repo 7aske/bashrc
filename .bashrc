@@ -120,6 +120,16 @@ alias drc='builtin cd ~/.wine/drive_c&& ls'
 alias etc='builtin cd /etc/&& ls'
 #alias dserver='builtin cd $HOME/Documents/CODE/js/deployment-server && npm start'
 alias backl='xbacklight -set'
+#alias hdmion='sudo intel-virtual-output'
+#alias hdmioff='sudo pkill intel-virtual-o'
+
+function hdmi() {
+	case $1 in
+		on*)	sudo intel-virtual-output;;
+		off*)	sudo pkill intel-virtual-o;;
+		*)	echo "usage: hdmi [on|off]";;
+	esac
+}
 function e () {
 	unameOut="$(uname -s)"
 	case "${unameOut}" in
