@@ -89,6 +89,15 @@ function push (){
 function pull (){
 	git pull "$@"
 }
+function git-srv-init () {
+	cmd1="mkdir -p /srv/repos/$1.git"
+	cmd2="cd /srv/repos/$1.git && git init --bare"
+	ssh git@nik-srv $cmd1&&
+	ssh git@nik-srv $cmd2&& echo Done.
+}
+function git-srv-add-remote () {
+	git remote add nik-srv git@nik-srv:/srv/repos/$1.git
+}
 function cd (){
 	case $1 in
 		..)
