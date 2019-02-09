@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR="$HOME/Documents/CODE"
-brc="source \$HOME/Documents/CODE/sh/bashrc/.bashrc"
+brc="source \$HOME/Documents/CODE/sh/bashrc/rc"
 
 function init {
     if grep "$brc" "$HOME/.bashrc"
