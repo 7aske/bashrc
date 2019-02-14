@@ -141,7 +141,7 @@ alias go-serve='$HOME/Documents/CODE/go/basic-http-server-go/out/httpserver'
 alias backl='xbacklight -set'
 #alias hdmion='sudo intel-virtual-output'
 #alias hdmioff='sudo pkill intel-virtual-o'
-alias instalog='ssh nik@nik-srv "tail -f ~/instaupload.log"'
+alias instalog='ssh nik@nik-srv "tail -f ~/Pictures/photography/_INSTA/instapy-bot.log"'
 function hdmi() {
 	case $1 in
 		on*)	sudo intel-virtual-output;;
