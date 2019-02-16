@@ -90,22 +90,26 @@ function pull (){
 	git pull "$@"
 }
 function git-srv-init () {
-	cmd1="mkdir -p /srv/git/repos/$1.git"
-	cmd2="cd /srv/git/repos/$1.git && git init --bare"
+	dir=${PWD##*/}
+	cmd1="mkdir -p /srv/git/repos/$dir.git"
+	cmd2="cd /srv/git/repos/$dir.git && git init --bare"
 	ssh git@nik-srv $cmd1&&
 	ssh git@nik-srv $cmd2&& echo Done.
 }
 function git-srv-add-remote () {
-	git remote add nik-srv git@nik-srv:/srv/git/repos/$1.git
+	dir=${PWD##*/} 
+	git remote add nik-srv git@nik-srv:/srv/git/repos/$dir.git
 }
 function git-rpi-init () {
-	cmd1="mkdir -p /srv/git/repos/$1.git"
-	cmd2="cd /srv/git/repos/$1.git && git init --bare"
-	ssh git@nik-srv $cmd1&&
-	ssh git@nik-srv $cmd2&& echo Done.
+	dir=${PWD##*/} 
+	cmd1="mkdir -p /srv/git/repos/$dir.git"
+	cmd2="cd /srv/git/repos/$dir.git && git init --bare"
+	ssh git@nik-rpi $cmd1&&
+	ssh git@nik-rpi $cmd2&& echo Done.
 }
 function git-rpi-add-remote () {
-	git remote add nik-srv git@nik-rpi:/srv/git/repos/$1.git
+	dir=${PWD##*/} 
+	git remote add nik-rpi git@nik-rpi:/srv/git/repos/$dir.git
 }
 function cd (){
 	case $1 in
