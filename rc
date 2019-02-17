@@ -43,9 +43,9 @@ function gg () {
 		git -C $loc push
 	fi
 }
-function gs (){
-	python $HOME/Documents/CODE/py/utils-py/gitstatus.py "$@"
-}
+#function gs (){
+#	python $HOME/Documents/CODE/py/utils-py/gitstatus.py "$@"
+#}
 function gf (){
 	python $HOME/Documents/CODE/py/utils-py/gitfetch.py "$@"
 }
@@ -144,6 +144,7 @@ alias etc='builtin cd /etc/&& ls'
 alias go-serve='$HOME/Documents/CODE/go/basic-http-server-go/out/httpserver'
 #alias dserver='builtin cd $HOME/Documents/CODE/js/deployment-server && npm start'
 alias backl='xbacklight -set'
+alias bell='xset -b'
 #alias hdmion='sudo intel-virtual-output'
 #alias hdmioff='sudo pkill intel-virtual-o'
 alias instalog='ssh nik@nik-srv "tail -f ~/Pictures/photography/_INSTA/instapy-bot.log"'
