@@ -217,3 +217,7 @@ function python(){
 #		sudo pm-powersave false
 #	fi
 #}
+
+function purge () {
+	for _ in {1..10}; do killall $1; done
+}
