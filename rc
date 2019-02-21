@@ -132,7 +132,7 @@ cd ~/Downloads/$1&& makepkg -sirc
 alias cls='clear'
 alias autoremove='sudo pacman -R $(pacman -Qdtq)'
 alias ci='code-insiders'
-alias packer='packer-aur'
+alias packer='packer-aur -a'
 alias chrome='google-chrome-stable'
 alias dow='builtin cd $HOME/Downloads&& ls'
 alias sha='builtin cd $HOME/Share&& ls'
