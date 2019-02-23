@@ -1,7 +1,8 @@
 #
 # ~/.bashrc
 #
-alias ls='ls --color=auto -gGapvh --group-directories-first'
+alias ls='ls --color=auto -gGpvh --group-directories-first'
+alias la='ls --color=auto -gGapvh --group-directories-first'
 
 function speedtest (){
 	curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
