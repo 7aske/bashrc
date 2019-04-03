@@ -86,7 +86,7 @@ function drycommit (){
 	git commit --branch --dry-run
 }
 function push (){
-	git push "$@"
+	git push "$@" &
 }
 function pull (){
 	git pull "$@"
