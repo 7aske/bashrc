@@ -8,7 +8,8 @@ function speedtest (){
 	curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
 }
 function bashrc (){
-	nano $HOME/Documents/CODE/sh/bashrc/rc && nano ~/.bashrc && exec bash
+	vim $HOME/Documents/CODE/sh/bashrc/rc && vim ~/.bashrc && exec 
+bash
 }
 function code () {
 	builtin cd $HOME/Documents/CODE/$1/$2 && ls
