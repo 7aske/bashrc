@@ -51,6 +51,10 @@ function gg () {
 function gf (){
 	python $HOME/Documents/CODE/py/utils-py/gitfetch.py "$@"
 }
+function ginit(){
+    git init
+    echo ".idea\n.vscode\nout\nbuild\ncmake-build-debug\nnode_modules\n" > .gitignore
+}
 function gr (){
 	echo "Password:"
 	read -s password
