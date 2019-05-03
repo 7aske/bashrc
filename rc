@@ -1,20 +1,16 @@
-#
-# ~/.bashrc
-#
+#!/bin/bash
 alias ls='ls --color=auto -gGpvh --group-directories-first'
 alias la='ls --color=auto -gGapvh --group-directories-first'
 
-function speedtest (){
-	curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
-}
+export CODE=$HOME/Documents/CODE
+export EDITOR=$(which vi)
+
 function bashrc (){
-	vim $HOME/Documents/CODE/sh/bashrc/rc && vim ~/.bashrc && exec 
-bash
+	$EDITOR $HOME/Documents/CODE/sh/bashrc/rc && $EDITOR ~/.bashrc && exec bash
 }
 function code () {
 	builtin cd $HOME/Documents/CODE/$1/$2 && ls
 }
-export CODE=$HOME/Documents/CODE
 compl () {
     COMPREPLY=();
     local word="${COMP_WORDS[COMP_CWORD]}";
@@ -29,32 +25,6 @@ compl () {
     fi
 }
 complete -F compl code
-complete -F compl gg
-complete -F compl gs
-function gp () {
-	git pull $1
-}
-function gg () {
-	if [ $# -eq 1 ]
-	then
-		git add . && git commit -m "$@"
-		git push
-	else
-		loc="$HOME/Documents/CODE/$1/$2"
-		git -C $loc add . && git -C $loc commit -m "$3"
-		git -C $loc push
-	fi
-}
-#function gs (){
-#	python $HOME/Documents/CODE/py/utils-py/gitstatus.py "$@"
-#}
-function gf (){
-	python $HOME/Documents/CODE/py/utils-py/gitfetch.py "$@"
-}
-function ginit(){
-    git init
-    echo ".idea\n.vscode\nout\nbuild\ncmake-build-debug\nnode_modules\n" > .gitignore
-}
 function gr (){
 	echo "Password:"
 	read -s password
@@ -62,18 +32,6 @@ function gr (){
 	curl -u 7aske:$password https://api.github.com/user/repos -d "{\"name\":\"$1\"}"
 	git init
 	git remote add origin https://github.com/7aske/$1.git
-}
-function clean (){
-	python $HOME/Documents/CODE/py/utils-py/clean.py "$@"
-}
-function renamer (){
-	python $HOME/Documents/CODE/py/utils-py/renamer.py "$@"
-}
-function instaupload(){
-	python $HOME/Documents/CODE/py/utils-py/instagramupload.py "$@"
-}
-function backup (){
-	python $HOME/Documents/CODE/py/utils-py/backup.py "$@"
 }
 function clone (){
 	if [ "$#" -eq 2 ]
@@ -117,6 +75,24 @@ function git-rpi-add-remote () {
 	dir=${PWD##*/} 
 	git remote add nik-rpi git@nik-rpi:/srv/git/repos/$dir.git
 }
+
+alias cls='clear -x'
+alias autoremove='sudo pacman -R $(pacman -Qdtq)'
+alias ci='code-insiders'
+alias packer='packer-aur -a'
+alias chrome='google-chrome-stable'
+alias dow='builtin cd $HOME/Downloads&& ls'
+alias sha='builtin cd $HOME/Share&& ls'
+alias doc='builtin cd $HOME/Documents&& ls'
+alias pic='builtin cd $HOME/Pictures&& ls'
+alias dro='builtin cd $HOME/Dropbox&& ls'
+alias pub='builtin cd $HOME/Public&& ls'
+alias shr='builtin cd /usr/share&& ls'
+alias drc='builtin cd ~/.wine/drive_c&& ls'
+alias etc='builtin cd /etc/&& ls'
+alias go-serve='$HOME/Documents/CODE/go/basic-http-server-go/out/httpserver'
+alias backl='xbacklight -set'
+alias bell='xset -b'
 function cd (){
 	case $1 in
 		..)
@@ -132,30 +108,9 @@ function cd (){
 	esac
 }
 function aur (){
-	git clone https://aur.archlinux.org/$1.git ~/Downloads/$1&& 
-cd ~/Downloads/$1&& makepkg -sirc
+	git clone https://aur.archlinux.org/$1.git ~/Downloads/$1&& cd ~/Downloads/$1&& makepkg -sirc
 }
-alias cls='clear'
-alias autoremove='sudo pacman -R $(pacman -Qdtq)'
-alias ci='code-insiders'
-alias packer='packer-aur -a'
-alias chrome='google-chrome-stable'
-alias dow='builtin cd $HOME/Downloads&& ls'
-alias sha='builtin cd $HOME/Share&& ls'
-alias doc='builtin cd $HOME/Documents&& ls'
-alias pic='builtin cd $HOME/Pictures&& ls'
-alias dro='builtin cd $HOME/Dropbox&& ls'
-alias pub='builtin cd $HOME/Public&& ls'
-alias shr='builtin cd /usr/share&& ls'
-alias drc='builtin cd ~/.wine/drive_c&& ls'
-alias etc='builtin cd /etc/&& ls'
-alias go-serve='$HOME/Documents/CODE/go/basic-http-server-go/out/httpserver'
-#alias dserver='builtin cd $HOME/Documents/CODE/js/deployment-server && npm start'
-alias backl='xbacklight -set'
-alias bell='xset -b'
-#alias hdmion='sudo intel-virtual-output'
-#alias hdmioff='sudo pkill intel-virtual-o'
-alias instalog='ssh nik@nik-srv "tail -f ~/Pictures/photography/_INSTA/instapy-bot.log"'
+
 function hdmi() {
 	case $1 in
 		on*)	sudo intel-virtual-output;;
@@ -173,27 +128,11 @@ function e () {
 		*)          machine="UNKNOWN:${unameOut}"
 	esac
 	if test ${machine} = 'Linux'; then
-		nemo "$@"& disown -a
+		xdg-open "$@"
 	else
 		explorer "$@"&
 	fi
 }
-
-LANG="en_US.UTF-8"
-LANGUAGE=
-LC_CTYPE="en_US.UTF-8"
-LC_NUMERIC="en_US.UTF-8"
-LC_TIME="en_US.UTF-8"
-LC_COLLATE="en_US.UTF-8"
-LC_MONETARY="en_US.UTF-8"
-LC_MESSAGES="en_US.UTF-8"
-LC_PAPER="en_US.UTF-8"
-LC_NAME="en_US.UTF-8"
-LC_ADDRESS="en_US.UTF-8"
-LC_TELEPHONE="en_US.UTF-8"
-LC_MEASUREMENT="en_US.UTF-8"
-LC_IDENTIFICATION="en_US.UTF-8"
-LC_ALL="en_US.UTF-8"
 
 function python(){
 	unameOut="$(uname -s)"
@@ -212,20 +151,22 @@ function python(){
 	fi
 }
 
-
-#function battery(){
-#	echo $1
-#	if [ "$1" = "true" ]; then
-#		echo Battery
-#		sudo tlp true
-#		sudo pm-powersave true
-#	else	
-#		echo AC
-#		sudo tlp false
-#		sudo pm-powersave false
-#	fi
-#}
-
 function purge () {
 	for _ in {1..10}; do killall $1; done
 }
+
+LANG="en_US.UTF-8"
+LANGUAGE=
+LC_CTYPE="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_PAPER="en_US.UTF-8"
+LC_NAME="en_US.UTF-8"
+LC_ADDRESS="en_US.UTF-8"
+LC_TELEPHONE="en_US.UTF-8"
+LC_MEASUREMENT="en_US.UTF-8"
+LC_IDENTIFICATION="en_US.UTF-8"
+LC_ALL="en_US.UTF-8"
