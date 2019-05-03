@@ -90,6 +90,7 @@ alias pub='builtin cd $HOME/Public&& ls'
 alias shr='builtin cd /usr/share&& ls'
 alias drc='builtin cd ~/.wine/drive_c&& ls'
 alias etc='builtin cd /etc/&& ls'
+alias gs="gitstatus.py"
 alias go-serve='$HOME/Documents/CODE/go/basic-http-server-go/out/httpserver'
 alias backl='xbacklight -set'
 alias bell='xset -b'
