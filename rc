@@ -162,6 +162,14 @@ function bandit () {
     else
         sshpass -p $2 ssh -o StrictHostKeyChecking=no -p 2220 bandit$1@bandit.labs.overthewire.org
     fi
+}	
+function dpi(){
+    if [ -z  "$1" ]
+    then
+        xfconf-query -c xsettings -p /Xft/DPI -s 96
+    else
+        xfconf-query -c xsettings -p /Xft/DPI -s $1
+    fi
 }
 PS1='\[\033[01;34m\]\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;34m\]\$\[\033[00m\] '
 # $(/bin/ls -1 | /usr/bin/wc -l | /bin/sed "s: ::g")
