@@ -2,25 +2,25 @@
 alias ls='ls --color=auto -gGpvh --group-directories-first'
 alias la='ls --color=auto -gGapvh --group-directories-first'
 
-export CODE=$HOME/Documents/CODE
+export CODE=$HOME/Code
 export EDITOR=$(which vim)
 
 function bashrc (){
-	$EDITOR $HOME/Documents/CODE/sh/bashrc/rc && $EDITOR ~/.bashrc && exec bash
+	$EDITOR $CODE/sh/bashrc/rc && $EDITOR ~/.bashrc && exec bash
 }
 function code () {
-	builtin cd $HOME/Documents/CODE/$1/$2 && ls
+	builtin cd $CODE/$1/$2 && ls
 }
 compl () {
     COMPREPLY=();
     local word="${COMP_WORDS[COMP_CWORD]}";
     if [ "$COMP_CWORD" -eq 1 ]; then
-        COMPREPLY=($(compgen -W "$(dir $HOME/Documents/CODE)" -- "$word"));
+        COMPREPLY=($(compgen -W "$(dir $CODE)" -- "$word"));
     else
         local words=("${COMP_WORDS[@]}");
         unset words[0];
         unset words[$COMP_CWORD];
-        local completions=$(dir -F $HOME/Documents/CODE/"${words[@]}");
+        local completions=$(dir -F $CODE/"${words[@]}");
         COMPREPLY=($(compgen -W "$completions" -- "$word"));
     fi
 }
@@ -91,7 +91,7 @@ alias shr='builtin cd /usr/share&& ls'
 alias drc='builtin cd ~/.wine/drive_c&& ls'
 alias etc='builtin cd /etc/&& ls'
 alias gs="gitstatus.py"
-alias go-serve='$HOME/Documents/CODE/go/basic-http-server-go/out/httpserver'
+alias go-serve='$CODE/go/basic-http-server-go/out/httpserver'
 alias backl='xbacklight -set'
 alias bell='xset -b'
 function cd (){
