@@ -94,6 +94,7 @@ alias gs="gitstatus.py"
 alias go-serve='$CODE/go/basic-http-server-go/out/httpserver'
 alias backl='xbacklight -set'
 alias bell='xset -b'
+alias bat='bat --paging never'
 function cd (){
 	case $1 in
 		..)
