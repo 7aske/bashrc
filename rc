@@ -107,7 +107,7 @@ function cd (){
 		.....)
 			builtin cd ../../../../&& ls;;
 		*)
-			builtin cd $1&& ls;;
+			builtin cd "$@"&& ls;;
 	esac
 }
 function aur (){
