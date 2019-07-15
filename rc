@@ -2,25 +2,25 @@
 alias ls='ls --color=auto -gGpvh --group-directories-first'
 alias la='ls --color=auto -gGapvh --group-directories-first'
 
-export CODE=$HOME/Documents/CODE
-export EDITOR=$(which vi)
+export CODE=$HOME/Code
+export EDITOR=$(which vim)
 
 function bashrc (){
-	$EDITOR $HOME/Documents/CODE/sh/bashrc/rc && $EDITOR ~/.bashrc && exec bash
+	$EDITOR $CODE/sh/bashrc/rc && $EDITOR ~/.bashrc && exec bash
 }
 function code () {
-	builtin cd $HOME/Documents/CODE/$1/$2 && ls
+	builtin cd $CODE/$1/$2 && ls
 }
 compl () {
     COMPREPLY=();
     local word="${COMP_WORDS[COMP_CWORD]}";
     if [ "$COMP_CWORD" -eq 1 ]; then
-        COMPREPLY=($(compgen -W "$(dir $HOME/Documents/CODE)" -- "$word"));
+        COMPREPLY=($(compgen -W "$(dir $CODE)" -- "$word"));
     else
         local words=("${COMP_WORDS[@]}");
         unset words[0];
         unset words[$COMP_CWORD];
-        local completions=$(dir -F $HOME/Documents/CODE/"${words[@]}");
+        local completions=$(dir -F $CODE/"${words[@]}");
         COMPREPLY=($(compgen -W "$completions" -- "$word"));
     fi
 }
@@ -79,7 +79,6 @@ function git-rpi-add-remote () {
 alias cls='clear -x'
 alias autoremove='sudo pacman -R $(pacman -Qdtq)'
 alias ci='code-insiders'
-alias packer='packer-aur -a'
 alias chrome='google-chrome-stable'
 alias dow='builtin cd $HOME/Downloads&& ls'
 alias sha='builtin cd $HOME/Share&& ls'
@@ -90,10 +89,11 @@ alias pub='builtin cd $HOME/Public&& ls'
 alias shr='builtin cd /usr/share&& ls'
 alias drc='builtin cd ~/.wine/drive_c&& ls'
 alias etc='builtin cd /etc/&& ls'
-alias gs="gitstatus.py"
-alias go-serve='$HOME/Documents/CODE/go/basic-http-server-go/out/httpserver'
+alias gs=$CODE/c/cgs/build/cgs
+alias go-serve='$CODE/go/basic-http-server-go/out/httpserver'
 alias backl='xbacklight -set'
 alias bell='xset -b'
+alias bat='bat --paging never'
 function cd (){
 	case $1 in
 		..)
@@ -105,11 +105,8 @@ function cd (){
 		.....)
 			builtin cd ../../../../&& ls;;
 		*)
-			builtin cd $1&& ls;;
+			builtin cd "$@"&& ls;;
 	esac
-}
-function aur (){
-	git clone https://aur.archlinux.org/$1.git ~/Downloads/$1&& cd ~/Downloads/$1&& makepkg -sirc
 }
 
 function hdmi() {
@@ -119,6 +116,7 @@ function hdmi() {
 		*)	echo "usage: hdmi [on|off]";;
 	esac
 }
+
 function e () {
 	unameOut="$(uname -s)"
 	case "${unameOut}" in
@@ -144,7 +142,7 @@ function python(){
 		MINGW*)     machine=MinGw;;
 		*)          machine="UNKNOWN:${unameOut}"
 	esac
-	echo ${machine}
+
 	if test ${machine} = 'MinGw'; then
 		winpty python.exe "$@"
 	else
@@ -155,22 +153,44 @@ function python(){
 function purge () {
 	for _ in {1..10}; do killall $1; done
 }
-function dpi(){
-    xfconf-query -c xsettings -p /Xft/DPI -s $1
-}
+function bandit () {
+    if [ -z "$2" ]
+    then
+       ssh -p 2220 bandit$1@bandit.labs.overthewire.org
+    else
+        sshpass -p $2 ssh -o StrictHostKeyChecking=no -p 2220 bandit$1@bandit.labs.overthewire.org
+    fi
+}	
 
-LANG="en_US.UTF-8"
-LANGUAGE=
-LC_CTYPE="en_US.UTF-8"
-LC_NUMERIC="en_US.UTF-8"
-LC_TIME="en_US.UTF-8"
-LC_COLLATE="en_US.UTF-8"
-LC_MONETARY="en_US.UTF-8"
-LC_MESSAGES="en_US.UTF-8"
-LC_PAPER="en_US.UTF-8"
-LC_NAME="en_US.UTF-8"
-LC_ADDRESS="en_US.UTF-8"
-LC_TELEPHONE="en_US.UTF-8"
-LC_MEASUREMENT="en_US.UTF-8"
-LC_IDENTIFICATION="en_US.UTF-8"
-LC_ALL="en_US.UTF-8"
+function dpi(){
+    if [ -z  "$1" ]
+    then
+        xfconf-query -c xsettings -p /Xft/DPI -s 96
+    else
+        xfconf-query -c xsettings -p /Xft/DPI -s $1
+    fi
+}
+PS1='\[\033[01;34m\]\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;34m\]\$\[\033[00m\] '
+
+if [ $TERM == "xterm-kitty" ]
+then
+	PS1='\[\033[01;34m\]>>=\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;34m\]=>\[\033[00m\] '
+else
+	PS1='\[\033[01;34m\]\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;34m\]\$\[\033[00m\] '
+fi
+
+LANG=en_US.UTF-8
+LANGUAGE=en_US:en
+LC_CTYPE=en_US.UTF-8
+LC_NUMERIC=en_US.UTF-8
+LC_TIME=en_US.UTF-8
+LC_COLLATE=en_US.UTF-8
+LC_MONETARY=en_US.UTF-8
+LC_MESSAGES=en_US.UTF-8
+LC_PAPER=en_US.UTF-8
+LC_NAME=en_US.UTF-8
+LC_ADDRESS=en_US.UTF-8
+LC_TELEPHONE=en_US.UTF-8
+LC_MEASUREMENT=en_US.UTF-8
+LC_IDENTIFICATION=en_US.UTF-8
+LC_ALL=
