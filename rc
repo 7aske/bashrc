@@ -48,10 +48,10 @@ function drycommit (){
 	git commit --branch --dry-run
 }
 function push (){
-	git push "$@" 
+    git push origin $(git branch | grep \* | awk '{print $2}') 
 }
 function pull (){
-	git pull "$@"
+    git pull origin $(git branch | grep \* | awk '{print $2}') 
 }
 function git-srv-init () {
 	dir=${PWD##*/}
