@@ -6,10 +6,10 @@ export CODE=$HOME/Code
 export EDITOR=$(which vim)
 
 function bashrc (){
-	$EDITOR $CODE/sh/bashrc/rc && $EDITOR ~/.bashrc && exec bash
+    $EDITOR $CODE/sh/bashrc/rc && $EDITOR ~/.bashrc && exec bash
 }
 function code () {
-	builtin cd $CODE/$1/$2 && ls
+    builtin cd $CODE/$1/$2 && ls
 }
 compl () {
     COMPREPLY=();
@@ -26,54 +26,54 @@ compl () {
 }
 complete -F compl code
 function gr (){
-	echo "Password:"
-	read -s password
-	echo
-	curl -u 7aske:$password https://api.github.com/user/repos -d "{\"name\":\"$1\"}"
-	git init
-	git remote add origin https://github.com/7aske/$1.git
+    echo "Password:"
+    read -s password
+    echo
+    curl -u 7aske:$password https://api.github.com/user/repos -d "{\"name\":\"$1\"}"
+    git init
+    git remote add origin https://github.com/7aske/$1.git
 }
 function clone (){
-	if [ "$#" -eq 2 ]
-	then
-		git clone https://github.com/$1/$2
-	else
-		git clone https://github.com/7aske/$1
-	fi
+    if [ "$#" -eq 2 ]
+    then
+        git clone https://github.com/$1/$2
+    else
+        git clone https://github.com/7aske/$1
+    fi
 }
 function commit (){
-	git add .&& git commit -m "$@"
+    git add .&& git commit -m "$@"
 }
 function drycommit (){
-	git commit --branch --dry-run
+    git commit --branch --dry-run
 }
 function push (){
-    git push origin $(git branch | grep \* | awk '{print $2}') 
+    git push origin $(git branch | grep \* | awk '{print $2}')
 }
 function pull (){
-    git pull origin $(git branch | grep \* | awk '{print $2}') 
+    git pull origin $(git branch | grep \* | awk '{print $2}')
 }
 function git-srv-init () {
-	dir=${PWD##*/}
-	cmd1="mkdir -p /srv/git/repos/$dir.git"
-	cmd2="cd /srv/git/repos/$dir.git && git init --bare"
-	ssh git@nik-srv $cmd1&&
-	ssh git@nik-srv $cmd2&& echo Done.
+    dir=${PWD##*/}
+    cmd1="mkdir -p /srv/git/repos/$dir.git"
+    cmd2="cd /srv/git/repos/$dir.git && git init --bare"
+    ssh git@nik-srv $cmd1&&
+    ssh git@nik-srv $cmd2&& echo Done.
 }
 function git-srv-add-remote () {
-	dir=${PWD##*/} 
-	git remote add nik-srv git@nik-srv:/srv/git/repos/$dir.git
+    dir=${PWD##*/}
+    git remote add nik-srv git@nik-srv:/srv/git/repos/$dir.git
 }
 function git-rpi-init () {
-	dir=${PWD##*/} 
-	cmd1="mkdir -p /srv/git/repos/$dir.git"
-	cmd2="cd /srv/git/repos/$dir.git && git init --bare"
-	ssh git@nik-rpi $cmd1&&
-	ssh git@nik-rpi $cmd2&& echo Done.
+    dir=${PWD##*/}
+    cmd1="mkdir -p /srv/git/repos/$dir.git"
+    cmd2="cd /srv/git/repos/$dir.git && git init --bare"
+    ssh git@nik-rpi $cmd1&&
+    ssh git@nik-rpi $cmd2&& echo Done.
 }
 function git-rpi-add-remote () {
-	dir=${PWD##*/} 
-	git remote add nik-rpi git@nik-rpi:/srv/git/repos/$dir.git
+    dir=${PWD##*/}
+    git remote add nik-rpi git@nik-rpi:/srv/git/repos/$dir.git
 }
 
 alias cls='clear -x'
@@ -95,72 +95,72 @@ alias backl='xbacklight -set'
 alias bell='xset -b'
 alias bat='bat --paging never'
 function cd (){
-	case $1 in
-		..)
-			builtin cd ..&& ls;;
-		...)	
-			builtin cd ../..&& ls;;
-		....)
-			builtin cd ../../..&& ls;;
-		.....)
-			builtin cd ../../../../&& ls;;
-		*)
-			builtin cd "$@"&& ls;;
-	esac
+    case $1 in
+        ..)
+        builtin cd ..&& ls;;
+        ...)
+        builtin cd ../..&& ls;;
+        ....)
+        builtin cd ../../..&& ls;;
+        .....)
+        builtin cd ../../../../&& ls;;
+        *)
+        builtin cd "$@"&& ls;;
+    esac
 }
 
 function hdmi() {
-	case $1 in
-		on*)	sudo intel-virtual-output;;
-		off*)	sudo pkill intel-virtual-o;;
-		*)	echo "usage: hdmi [on|off]";;
-	esac
+    case $1 in
+        on*)	sudo intel-virtual-output;;
+        off*)	sudo pkill intel-virtual-o;;
+        *)	echo "usage: hdmi [on|off]";;
+    esac
 }
 
 function e () {
-	unameOut="$(uname -s)"
-	case "${unameOut}" in
-		Linux*)     machine=Linux;;
-		Darwin*)    machine=Mac;;
-		CYGWIN*)    machine=Cygwin;;
-		MINGW*)     machine=MinGw;;
-		*)          machine="UNKNOWN:${unameOut}"
-	esac
-	if test ${machine} = 'Linux'; then
-		xdg-open "$@"
-	else
-		explorer "$@"&
-	fi
+    unameOut="$(uname -s)"
+    case "${unameOut}" in
+        Linux*)     machine=Linux;;
+        Darwin*)    machine=Mac;;
+        CYGWIN*)    machine=Cygwin;;
+        MINGW*)     machine=MinGw;;
+        *)          machine="UNKNOWN:${unameOut}"
+    esac
+    if test ${machine} = 'Linux'; then
+        xdg-open "$@"
+    else
+        explorer "$@"&
+    fi
 }
 
 function python(){
-	unameOut="$(uname -s)"
-	case "${unameOut}" in
-		Linux*)     machine=Linux;;
-		Darwin*)    machine=Mac;;
-		CYGWIN*)    machine=Cygwin;;
-		MINGW*)     machine=MinGw;;
-		*)          machine="UNKNOWN:${unameOut}"
-	esac
-
-	if test ${machine} = 'MinGw'; then
-		winpty python.exe "$@"
-	else
-		python3 "$@"
-	fi
+    unameOut="$(uname -s)"
+    case "${unameOut}" in
+        Linux*)     machine=Linux;;
+        Darwin*)    machine=Mac;;
+        CYGWIN*)    machine=Cygwin;;
+        MINGW*)     machine=MinGw;;
+        *)          machine="UNKNOWN:${unameOut}"
+    esac
+    
+    if test ${machine} = 'MinGw'; then
+        winpty python.exe "$@"
+    else
+        python3 "$@"
+    fi
 }
 
 function purge () {
-	for _ in {1..10}; do killall $1; done
+    for _ in {1..10}; do killall $1; done
 }
 function bandit () {
     if [ -z "$2" ]
     then
-       ssh -p 2220 bandit$1@bandit.labs.overthewire.org
+        ssh -p 2220 bandit$1@bandit.labs.overthewire.org
     else
         sshpass -p $2 ssh -o StrictHostKeyChecking=no -p 2220 bandit$1@bandit.labs.overthewire.org
     fi
-}	
+}
 
 function dpi(){
     if [ -z  "$1" ]
@@ -170,20 +170,32 @@ function dpi(){
         xfconf-query -c xsettings -p /Xft/DPI -s $1
     fi
 }
-
-
+echo $(id -u)
 if [ $TERM == "xterm-kitty" ]
 then
-	PS1='\[\033[01;34m\]>>=\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;34m\]=>\[\033[00m\] '
+    if [[ "$(id -u)" == "0" ]]; then
+        export PS1='\[\033[01;31m\]>>=\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;31m\]=>\[\033[00m\] '
+        
+    else
+        export PS1='\[\033[01;34m\]>>=\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;34m\]=>\[\033[00m\] '
+    fi
 else
-	PS1='\[\033[01;34m\]\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;34m\]\$\[\033[00m\] '
+    if [[ "$(id -u)" == "0" ]]; then
+	    export PS1='\[\033[01;31m\]\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;31m\]\$\[\033[00m\] '
+	else
+	    export PS1='\[\033[01;34m\]\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;34m\]\$\[\033[00m\] '
+	fi
 fi
 
 if grep SSH_CLIENT <(env) &> /dev/null
 then
-	clear -x
-	neofetch --config ~/.config/neofetch/config_ssh.conf 2> /dev/null
-	export PS1='\[\033[01;35m\]\u@\h\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;35m\]\$\[\033[00m\] '
+    clear -x
+    neofetch --config ~/.config/neofetch/config_ssh.conf 2> /dev/null
+    if [[ "$(id -u)" == "0" ]]; then
+        export PS1='\[\033[01;31m\]\u@\h\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;31m\]\$\[\033[00m\] '
+    else
+        export PS1='\[\033[01;35m\]\u@\h\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;35m\]\$\[\033[00m\] '
+    fi
 fi
 
 LANG=en_US.UTF-8
