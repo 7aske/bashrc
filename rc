@@ -170,7 +170,7 @@ function dpi(){
         xfconf-query -c xsettings -p /Xft/DPI -s $1
     fi
 }
-echo $(id -u)
+
 if [ $TERM == "xterm-kitty" ]
 then
     if [[ "$(id -u)" == "0" ]]; then
