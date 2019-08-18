@@ -79,6 +79,7 @@ function git-rpi-add-remote () {
 alias cls='clear -x'
 alias autoremove='sudo pacman -R $(pacman -Qdtq)'
 alias ci='code-insiders'
+alias c='vscodium'
 alias chrome='google-chrome-stable'
 alias dow='builtin cd $HOME/Downloads&& ls'
 alias sha='builtin cd $HOME/Share&& ls'
