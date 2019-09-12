@@ -8,24 +8,6 @@ export HISTFILESIZE=
 function bashrc () {
     $EDITOR $CODE/sh/bashrc/rc && $EDITOR ~/.bashrc && source ~/.bashrc
 }
-function code () {
-    builtin cd $CODE/$1/$2 && ls
-}
-compl () {
-    COMPREPLY=();
-    local word="${COMP_WORDS[COMP_CWORD]}";
-    if [ "$COMP_CWORD" -eq 1 ]; then
-        COMPREPLY=($(compgen -W "$(dir $CODE)" -- "$word"));
-    else
-        local words=("${COMP_WORDS[@]}");
-        unset words[0];
-        unset words[$COMP_CWORD];
-        local completions=$(dir -F $CODE/"${words[@]}");
-        COMPREPLY=($(compgen -W "$completions" -- "$word"));
-    fi
-}
-complete -F compl code
-
 # git utils
 function gr () {
     echo "Password:"
@@ -138,6 +120,24 @@ function bandit () {
         sshpass -p $2 ssh -o StrictHostKeyChecking=no -p 2220 bandit$1@bandit.labs.overthewire.org
     fi
 }
+function code () {
+    builtin cd $CODE/$1/$2 && ls
+}
+compl () {
+    COMPREPLY=();
+    local word="${COMP_WORDS[COMP_CWORD]}";
+    if [ "$COMP_CWORD" -eq 1 ]; then
+        COMPREPLY=($(compgen -W "$(dir $CODE)" -- "$word"));
+    else
+        local words=("${COMP_WORDS[@]}");
+        unset words[0];
+        unset words[$COMP_CWORD];
+        local completions=$(dir -F $CODE/"${words[@]}");
+        COMPREPLY=($(compgen -W "$completions" -- "$word"));
+    fi
+}
+complete -F compl code
+
 
 # PS1 setup
 if [ $TERM == "xterm-kitty" ]; then
