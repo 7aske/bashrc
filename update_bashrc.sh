@@ -1,19 +1,15 @@
-#!/bin/sh
+#!/bin/bash
+
 DIR="$HOME/Code"
 brc="source \$HOME/Code/sh/bashrc/rc"
 
-function init_bashrc {
-    if grep "$brc" "$HOME/.bashrc"; then
-        echo "Nothing to do."
-    else 
-        echo "$brc" >> "$HOME/.bashrc"
-        exec bash
-    fi
-}
+if ! [ -d "$DIR" ]; then
+    mkdir -p "$DIR/sh" && git clone https://github.com/7aske/bashrc "$DIR/sh/bashrc"
+fi
 
-if [ -d "$DIR" ]; then
-    init_bashrc
+if grep "$brc" "$HOME/.bashrc"; then
+    echo "Nothing to do."
 else
-    mkdir -p "$DIR/sh"&& git clone https://github.com/7aske/bashrc "$DIR/sh/bashrc"
-    init_bashrc
+    echo "$brc" >>"$HOME/.bashrc"
+    source "$HOME/.bashrc"
 fi
