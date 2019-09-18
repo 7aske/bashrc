@@ -6,7 +6,7 @@ export HISTSIZE=
 export HISTFILESIZE=
 
 function bashrc() {
-    $EDITOR "$CODE"/sh/bashrc/rc && $EDITOR "$HOME"/.bashrc && source "$HOME"/.bashrc
+    $EDITOR "$CODE"/sh/bashrc/.bashrc && $EDITOR "$HOME"/.bashrc && source "$HOME"/.bashrc
 }
 # git utils
 function gr() {
