@@ -46,7 +46,7 @@ alias chrome='google-chrome-stable'
 alias bat='bat --paging never'
 alias myip='printf "%s\n" `curl -s ident.me`'
 alias grep='grep --color=auto'
-
+alias cpwd='pwd | xclip -sel c'
 # navigation
 alias dow='builtin cd $HOME/Downloads&& ls'
 alias sha='builtin cd $HOME/Share&& ls'
