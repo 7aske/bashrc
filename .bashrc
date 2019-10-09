@@ -56,7 +56,7 @@ alias dro='builtin cd $HOME/Dropbox&& ls'
 alias pub='builtin cd $HOME/Public&& ls'
 alias shr='builtin cd /usr/share&& ls'
 alias etc='builtin cd /etc/&& ls'
-
+alias rsrc='source ~/.bashrc'
 # ls
 alias ls='ls --color=auto -lpvh --group-directories-first'
 alias la='ls --color=auto -lApvh --group-directories-first'
