@@ -63,7 +63,6 @@ alias la='ls --color=auto -lApvh --group-directories-first'
 
 # personal utils
 alias gs="$CODE"/c/cgs/build/cgs
-alias go-serve='$CODE/go/basic-http-server-go/out/httpserver'
 
 # laptop misc
 alias backl='xbacklight -set'
