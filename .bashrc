@@ -8,6 +8,7 @@ export HISTFILESIZE=
 function bashrc() {
     $EDITOR "$CODE"/sh/bashrc/.bashrc && $EDITOR "$HOME"/.bashrc && source "$HOME"/.bashrc
 }
+
 # git utils
 function gr() {
     echo "Password:"
@@ -17,6 +18,7 @@ function gr() {
     git init
     git remote add origin https://github.com/7aske/"$1".git
 }
+
 function clone() {
     if [ "$#" -eq 2 ]; then
         git clone https://github.com/"$1"/"$2"
@@ -24,25 +26,33 @@ function clone() {
         git clone https://github.com/7aske/"$1"
     fi
 }
+
 function commit() { git add . && git commit -m "$@"; }
+
 function drycommit() { git commit --branch --dry-run; }
+
 function push() { git push origin "$(git branch | grep -e "^[\*]" | awk '{print $2}')"; }
+
 function pull() { git pull origin "$(git branch | grep -e "^[\*]" | awk '{print $2}')"; }
 
 function dpi() {
-    if [ -z "$1" ]; then
-        xfconf-query -c xsettings -p /Xft/DPI -s 96
-    else
-        xfconf-query -c xsettings -p /Xft/DPI -s "$1"
+    val=$([ ! -z "$1" ] && echo "$1" || echo 96)
+    if [ "$DESKTOP_SESSION" == "gnome" ]; then
+        dconf write /org/gnome/desktop/interface/text-scaling-factor $(echo "scale=1; $val/96" | bc) 2> /dev/null
+    elif [ "$DESKTOP_SESSION" == "xfce" ]; then
+        xfconf-query -c xsettings -p /Xft/DPI -s "$val" 2> /dev/null
     fi
+
 }
 
 alias cls='clear -x'
 alias autoremove='sudo pacman -R $(pacman -Qdtq)'
 alias pacman='sudo pacman'
+alias v='vim'
+alias n='nano'
 alias ci='code-insiders'
-alias c='vscodium'
-alias chrome='google-chrome-stable'
+alias c='vscodium || codium'
+alias chrome='google-chrome-stable || chromium'
 alias bat='bat --paging never'
 alias myip='printf "%s\n" `curl -s ident.me`'
 alias grep='grep --color=auto'
@@ -56,6 +66,7 @@ alias dro='builtin cd $HOME/Dropbox&& ls'
 alias pub='builtin cd $HOME/Public&& ls'
 alias shr='builtin cd /usr/share&& ls'
 alias etc='builtin cd /etc/&& ls'
+# misc
 alias rsrc='source ~/.bashrc'
 # ls
 alias ls='ls --color=auto -lpvh --group-directories-first'
