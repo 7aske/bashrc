@@ -78,13 +78,6 @@ alias gs="$CODE"/c/cgs/build/cgs
 # laptop misc
 alias backl='xbacklight -set'
 alias bell='xset -b'
-function hdmi() {
-    case $1 in
-    on*) sudo intel-virtual-output ;;
-    off*) sudo pkill intel-virtual-o ;;
-    *) echo "usage: hdmi [on|off]" ;;
-    esac
-}
 
 # eg. cd ... to jump back two directories
 function cd() {
