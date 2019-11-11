@@ -66,6 +66,7 @@ alias dro='builtin cd $HOME/Dropbox&& ls'
 alias pub='builtin cd $HOME/Public&& ls'
 alias shr='builtin cd /usr/share&& ls'
 alias etc='builtin cd /etc/&& ls'
+alias chc='cd "$("$CODE"/sh/utils-sh/chcode.sh)"'
 # misc
 alias rsrc='source ~/.bashrc'
 # ls
