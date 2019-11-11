@@ -67,6 +67,7 @@ alias pub='builtin cd $HOME/Public&& ls'
 alias shr='builtin cd /usr/share&& ls'
 alias etc='builtin cd /etc/&& ls'
 alias chc='cd "$("$CODE"/sh/utils-sh/chcode.sh)"'
+alias chgs='cd "$("$CODE"/sh/utils-sh/chgs.sh)" && echo -e "\ngit status -s\n"; git status -s'
 # misc
 alias rsrc='source ~/.bashrc'
 # ls
