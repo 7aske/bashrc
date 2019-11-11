@@ -48,7 +48,7 @@ function dpi() {
 alias cls='clear -x'
 alias autoremove='sudo pacman -R $(pacman -Qdtq)'
 alias pacman='sudo pacman'
-alias v='vim'
+alias v='nvim'
 alias n='nano'
 alias ci='code-insiders'
 alias c='vscodium || codium'
