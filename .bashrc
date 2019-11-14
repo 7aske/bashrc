@@ -51,8 +51,10 @@ alias pacman='sudo pacman'
 alias v='nvim'
 alias n='nano'
 alias ci='code-insiders'
-alias c='vscodium || codium'
-alias chrome='google-chrome-stable || chromium'
+# alias c='vscodium || codium'
+function c { vscodium $@ || codium $@; }
+# alias chrome='google-chrome-stable || chromium
+function chrome { google-chrome-stable $@ || chromium $@; }
 alias bat='bat --paging never'
 alias myip='printf "%s\n" `curl -s ident.me`'
 alias grep='grep --color=auto'
