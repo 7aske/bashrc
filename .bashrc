@@ -76,7 +76,10 @@ alias la='ls --color=auto -lApvh --group-directories-first'
 
 # personal utils
 alias gs="$CODE"/c/cgs/build/cgs
-
+function hist () {
+    cmd="$(history | sort -r | fzf | sed -e "s/[0-9 ]\+//p")"
+    eval $cmd 
+}
 # laptop misc
 alias backl='xbacklight -set'
 alias bell='xset -b'
