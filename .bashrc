@@ -55,7 +55,7 @@ alias ci='code-insiders'
 function c { vscodium $@ || codium $@; }
 # alias chrome='google-chrome-stable || chromium
 function chrome { google-chrome-stable $@ || chromium $@; }
-alias bat='bat --paging never'
+alias bat='bat -p --paging never'
 alias myip='printf "%s\n" `curl -s ident.me`'
 alias grep='grep --color=auto'
 alias cpwd='pwd | xclip -sel c'
