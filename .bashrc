@@ -106,6 +106,7 @@ function cd() {
         ;;
     esac
 }
+alias cdb="cd $OLDPWD"
 
 function e() {
     unameOut="$(uname -s)"
