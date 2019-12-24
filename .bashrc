@@ -72,6 +72,7 @@ alias chc='cd "$("$CODE"/sh/utils-sh/chcode.sh)"'
 alias chgs='cd "$("$CODE"/sh/utils-sh/chgs.sh)" && echo -e "\ngit status -s\n"; git status -s'
 # misc
 alias rsrc='source ~/.bashrc'
+alias ascii='man ascii'
 # ls
 alias ls='ls --color=auto -lpvh --group-directories-first'
 alias la='ls --color=auto -lApvh --group-directories-first'
