@@ -78,7 +78,7 @@ alias ls='ls --color=auto -lpvh --group-directories-first'
 alias la='ls --color=auto -lApvh --group-directories-first'
 
 # personal utils
-alias gs="$CODE"/c/cgs/build/cgs
+alias gs='/usr/bin/cgs'
 function hist () {
     cmd="$(history | sort -r | fzf | sed -e 's/[0-9 ]\+//')"
     eval "$cmd" 
