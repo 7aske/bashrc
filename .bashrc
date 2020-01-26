@@ -1,9 +1,9 @@
 #!/bin/bash
 
-export CODE=$HOME/Code
-export EDITOR=$(command -v vim 2> /dev/null || echo /usr/bin/nano)
+export CODE="$HOME"/Code
 export HISTSIZE=
 export HISTFILESIZE=
+export LESSHISTSIZE=0
 
 function bashrc() {
     $EDITOR "$CODE"/sh/bashrc/.bashrc && $EDITOR "$HOME"/.bashrc && source "$HOME"/.bashrc
@@ -51,13 +51,12 @@ alias pacman='sudo pacman'
 alias v='nvim'
 alias n='nano'
 alias ci='code-insiders'
-# alias c='vscodium || codium'
 function c { vscodium $@ || codium $@; }
-# alias chrome='google-chrome-stable || chromium
 function chrome { google-chrome-stable $@ || chromium $@; }
 alias bat='bat -p --paging never'
 alias myip='printf "%s\n" `curl -s ident.me`'
 alias grep='grep --color=auto'
+alias wget='wget --hsts-file=~/.config/wget/.wget-hsts'
 alias cpwd='pwd | xclip -sel c'
 # navigation
 alias dow='builtin cd $HOME/Downloads&& ls'
@@ -74,8 +73,8 @@ alias chgs='cd "$("$CODE"/sh/utils-sh/chgs.sh)" && echo -e "\ngit status -s\n"; 
 alias rsrc='source ~/.bashrc'
 alias ascii='man ascii'
 # ls
-alias ls='ls --color=auto -lpvh --group-directories-first'
-alias la='ls --color=auto -lApvh --group-directories-first'
+alias ls='ls --color=auto -lph --group-directories-first'
+alias la='ls --color=auto -lAph --group-directories-first'
 
 # personal utils
 alias gs='/usr/bin/cgs'
@@ -127,18 +126,11 @@ function e() {
     fi
 }
 
-# easier bandint connection
-function bandit() {
-    if [ -z "$2" ]; then
-        ssh -p 2220 bandit"$1"@bandit.labs.overthewire.org
-    else
-        sshpass -p "$2" ssh -o StrictHostKeyChecking=no -p 2220 bandit"$1"@bandit.labs.overthewire.org
-    fi
-}
 function code() {
     builtin cd "$CODE"/"$1"/"$2" && ls
 }
-compl() {
+
+compl_code() {
     COMPREPLY=()
     local word="${COMP_WORDS[COMP_CWORD]}"
     if [ "$COMP_CWORD" -eq 1 ]; then
@@ -151,7 +143,7 @@ compl() {
         COMPREPLY=($(compgen -W "$completions" -- "$word"))
     fi
 }
-complete -F compl code
+complete -F compl_code code
 
 # PS1 setup
 if [ "$TERM" == "xterm-kitty" ]; then
