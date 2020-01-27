@@ -54,7 +54,7 @@ alias ci='code-insiders'
 function c { vscodium $@ || codium $@; }
 function chrome { google-chrome-stable $@ || chromium $@; }
 alias bat='bat -p --paging never'
-alias myip='printf "%s\n" `curl -s ident.me`'
+alias myip='curl -s api.ipify.org'
 alias grep='grep --color=auto'
 alias wget='wget --hsts-file=~/.config/wget/.wget-hsts'
 alias cpwd='pwd | xclip -sel c'
