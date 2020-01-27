@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 SRCSTR="source \$HOME/Code/sh/bashrc/.bashrc"
 
