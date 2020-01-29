@@ -59,6 +59,7 @@ alias grep='grep --color=auto'
 alias wget='wget --hsts-file=~/.config/wget/.wget-hsts'
 alias cpwd='pwd | xclip -sel c'
 # navigation
+alias conf='builtin cd $HOME/.config/&& ls'
 alias dow='builtin cd $HOME/Downloads&& ls'
 alias sha='builtin cd $HOME/Share&& ls'
 alias doc='builtin cd $HOME/Documents&& ls'
