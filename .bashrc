@@ -165,9 +165,8 @@ if grep SSH_CLIENT <(env) &>/dev/null; then
     fi
 fi
 bind 'set editing-mode vi'
-bind 'set show-mode-in-prompt on'
-bind 'set vi-ins-mode-string "+"'
-bind 'set vi-cmd-mode-string ":"'
+# bind 'set show-mode-in-prompt on'
+# bind 'set vi-ins-mode-string "+"'
+# bind 'set vi-cmd-mode-string ":"'
 bind 'set keymap vi-insert'
-# RETURN: "\e\n"
 
