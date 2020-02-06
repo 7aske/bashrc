@@ -5,6 +5,7 @@ export HISTSIZE=
 export HISTFILESIZE=
 export LESSHISTSIZE=0
 
+
 function bashrc() {
     $EDITOR "$CODE"/sh/bashrc/.bashrc && $EDITOR "$HOME"/.bashrc && source "$HOME"/.bashrc
 }
@@ -102,7 +103,8 @@ function cd() {
     .....)
         builtin cd ../../../../ && ls
         ;;
-    *)
+    *)00:03 refs/
+-rw-r--r-- 1 nik nik  265 Dec  1 00:03
         builtin cd "$@" && ls
         ;;
     esac
@@ -147,18 +149,10 @@ compl_code() {
 complete -F compl_code code
 
 # PS1 setup
-if [ "$TERM" == "xterm-kitty" ]; then
-    if [[ "$(id -u)" == "0" ]]; then
-        export PS1='\[\033[01;31m\]>>=\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;31m\]=>\[\033[00m\] '
-    else
-        export PS1='\[\033[01;34m\]>>=\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;34m\]=>\[\033[00m\] '
-    fi
+if [[ "$(id -u)" == "0" ]]; then
+    export PS1='\[\033[01;31m\]\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;31m\]\$\[\033[00m\] '
 else
-    if [[ "$(id -u)" == "0" ]]; then
-        export PS1='\[\033[01;31m\]\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;31m\]\$\[\033[00m\] '
-    else
-        export PS1='\[\033[01;34m\]\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;34m\]\$\[\033[00m\] '
-    fi
+    export PS1='\[\033[01;34m\]\u\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;34m\]\$\[\033[00m\] '
 fi
 
 if grep SSH_CLIENT <(env) &>/dev/null; then
@@ -170,3 +164,10 @@ if grep SSH_CLIENT <(env) &>/dev/null; then
         export PS1='\[\033[01;35m\]\u@\h\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;35m\]\$\[\033[00m\] '
     fi
 fi
+bind 'set editing-mode vi'
+bind 'set show-mode-in-prompt on'
+bind 'set vi-ins-mode-string "+"'
+bind 'set vi-cmd-mode-string ":"'
+bind 'set keymap vi-insert'
+# RETURN: "\e\n"
+
