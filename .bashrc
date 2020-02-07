@@ -59,7 +59,7 @@ alias myip='curl -s api.ipify.org'
 alias grep='grep --color=auto'
 alias wget='wget --hsts-file=~/.config/wget/.wget-hsts'
 alias cpwd='pwd | xclip -sel c'
-alias diff="diff --color=always"
+alias diff="diff --color=auto"
 # navigation
 alias conf='builtin cd $HOME/.config/&& ls'
 alias dow='builtin cd $HOME/Downloads&& ls'
