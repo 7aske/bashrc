@@ -59,6 +59,7 @@ alias myip='curl -s api.ipify.org'
 alias grep='grep --color=auto'
 alias wget='wget --hsts-file=~/.config/wget/.wget-hsts'
 alias cpwd='pwd | xclip -sel c'
+alias diff="diff --color=always"
 # navigation
 alias conf='builtin cd $HOME/.config/&& ls'
 alias dow='builtin cd $HOME/Downloads&& ls'
@@ -103,8 +104,7 @@ function cd() {
     .....)
         builtin cd ../../../../ && ls
         ;;
-    *)00:03 refs/
--rw-r--r-- 1 nik nik  265 Dec  1 00:03
+    *)
         builtin cd "$@" && ls
         ;;
     esac
@@ -164,9 +164,9 @@ if grep SSH_CLIENT <(env) &>/dev/null; then
         export PS1='\[\033[01;35m\]\u@\h\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;35m\]\$\[\033[00m\] '
     fi
 fi
-bind 'set editing-mode vi'
+# bind 'set editing-mode vi'
 # bind 'set show-mode-in-prompt on'
 # bind 'set vi-ins-mode-string "+"'
 # bind 'set vi-cmd-mode-string ":"'
-bind 'set keymap vi-insert'
+# bind 'set keymap vi-insert'
 
