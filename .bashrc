@@ -28,6 +28,8 @@ function clone() {
     fi
 }
 
+function gitreset() { git reset --hard HEAD; }
+
 function commit() { git add . && git commit -m "$@"; }
 
 function drycommit() { git commit --branch --dry-run; }
