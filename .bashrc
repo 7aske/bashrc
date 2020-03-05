@@ -113,7 +113,7 @@ function cd() {
 }
 alias cdb="cd $OLDPWD"
 
-function e() {
+function open() {
     unameOut="$(uname -s)"
     case "${unameOut}" in
     Linux*) machine=Linux ;;
@@ -123,9 +123,11 @@ function e() {
     *) machine="UNKNOWN:${unameOut}" ;;
     esac
     if test "${machine}" = 'Linux'; then
-        xdg-open "$@"
+        (xdg-open "$@" 2>&1>/dev/null &)
     elif test "${machine}" = 'Cygwin' || test "${machine}" = 'MinGw'; then
         explorer "$@" &
+    elif test "${machine}" = 'Mac'; then
+        open "$@"
     else
         echo 'Unsupported OS'
     fi
