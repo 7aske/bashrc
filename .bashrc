@@ -56,7 +56,7 @@ alias n='nano'
 alias ci='code-insiders'
 function c { vscodium $@ || codium $@; }
 function chrome { google-chrome-stable $@ || chromium $@; }
-alias bat='bat -p --paging never'
+alias bat='bat -p --paging never --theme=base16'
 alias myip='curl -s api.ipify.org'
 alias grep='grep --color=auto'
 alias wget='wget --hsts-file=~/.config/wget/.wget-hsts'
