@@ -160,8 +160,8 @@ else
 fi
 
 if grep SSH_CLIENT <(env) &>/dev/null; then
-    clear -x
-    neofetch --config ~/.config/neofetch/config_ssh.conf 2>/dev/null
+    #clear -x
+    #neofetch --config ~/.config/neofetch/config_ssh.conf 2>/dev/null
     if [[ "$(id -u)" == "0" ]]; then
         export PS1='\[\033[01;31m\]\u@\h\[\033[01;37m\] \W \[\033[01;32m\]\[\033[01;33m\]$(git branch 2>/dev/null | sed -n "s/* \(.*\)/\1 /p")\[\033[01;31m\]\$\[\033[00m\] '
     else
