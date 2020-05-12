@@ -1,13 +1,13 @@
 #!/bin/bash
 
-export CODE="$HOME"/Code
+export CODE="$HOME/.local/src"
 export HISTSIZE=
 export HISTFILESIZE=
 export LESSHISTSIZE=0
 
 
 function bashrc() {
-    $EDITOR "$CODE"/sh/bashrc/.bashrc && $EDITOR "$HOME"/.bashrc && source "$HOME"/.bashrc
+    $EDITOR "$CODE/sh/bashrc/.bashrc" && $EDITOR "$HOME/.bashrc" && source "$HOME/.bashrc"
 }
 
 # git utils
@@ -45,7 +45,6 @@ function dpi() {
     elif [ "$DESKTOP_SESSION" == "xfce" ]; then
         xfconf-query -c xsettings -p /Xft/DPI -s "$val" 2> /dev/null
     fi
-
 }
 
 alias cls='clear -x'
@@ -54,7 +53,7 @@ alias pacman='sudo pacman'
 alias v='nvim'
 alias n='nano'
 alias ci='code-insiders'
-function c { vscodium $@ || codium $@; }
+function c { vscodium $@ || codium $@ || /usr/bin/code $@; }
 function chrome { google-chrome-stable $@ || chromium $@; }
 alias bat='bat -p --paging never --theme=base16'
 alias myip='curl -s api.ipify.org'
@@ -71,8 +70,9 @@ alias pic='builtin cd $HOME/Pictures&& ls'
 alias dro='builtin cd $HOME/Dropbox&& ls'
 alias pub='builtin cd $HOME/Public&& ls'
 alias shr='builtin cd /usr/share&& ls'
-alias etc='builtin cd /etc/&& ls'
-alias chc='cd "$("$CODE"/sh/utils-sh/chcode.sh)"'
+alias etc='builtin cd /etc&& ls'
+alias lcl='builtin cd $HOME/.local&& ls'
+alias chc='cd "$(chcode)"'
 alias chgs='cd "$(codegs)" && echo -e "\ngit status -s\n"; git status -s'
 # misc
 alias rsrc='source ~/.bashrc'
