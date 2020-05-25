@@ -123,7 +123,7 @@ function open() {
     *) machine="UNKNOWN:${unameOut}" ;;
     esac
     if test "${machine}" = 'Linux'; then
-        (xdg-open "$@" 2>&1>/dev/null &)
+        (xdg-open "$@" >/dev/null 2>&1 &)
     elif test "${machine}" = 'Cygwin' || test "${machine}" = 'MinGw'; then
         explorer "$@" &
     elif test "${machine}" = 'Mac'; then
